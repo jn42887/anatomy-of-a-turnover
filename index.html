@@ -45,6 +45,54 @@
         h1, h2, h3 {
             color: #F2A900;
         }
+        .scale-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .scale-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 50%;
+        }
+        .factor-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+        .factor-block:hover {
+            transform: translateY(-5px);
+        }
+        .positive-risk {
+            background-color: #E21E2C;
+        }
+        .negative-risk {
+            background-color: #0053A0;
+        }
+        .factor-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .factor-effect {
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+        .positive-text {
+            color: #E21E2C;
+        }
+        .negative-text {
+            color: #0053A0;
+        }
     </style>
 </head>
 <body>
@@ -62,7 +110,7 @@
                 <div class="w-full md:w-1/2 text-center md:text-left pr-0 md:pr-8">
                     <h2 class="text-3xl font-bold text-[#002D72] mb-4">The Primary Causes</h2>
                     <p class="text-gray-600 mb-4">
-                        The vast majority of turnovers stem from just two fundamental types of errors: <b>bad passes</b> and <b>losing control of the ball</b>. Together, they form the overwhelming bulk of turnovers across the league, highlighting the importance of ball-handling and passing accuracy/decision-making.
+                        The vast majority of turnovers stem from just two fundamental types of errors: **bad passes** and **losing control of the ball**. Together, they form the overwhelming bulk of turnovers across the league, highlighting the importance of ball-handling and passing accuracy/decision-making.
                     </p>
                     <div class="bg-[#F2A900] text-[#002D72] p-6 rounded-lg shadow-md">
                         <span class="kpi">77%</span>
@@ -166,7 +214,16 @@
                 </div>
             </div>
 
-        </main>
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Creating a Turnover Probability Model</h2>
+                <p class="text-gray-600 mb-6">
+                    Using the trends discovered above, we can create a turnover probabiltiy model similar to how we use shot quality models. The visual below shows the most important factors in calculating turnover probability at the chance level, with the stats in red indicating an increased likelihood of a turnover, and the stats in blue indicating a decreased likelihood.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="regressionChart"></canvas>
+                </div>
+            </div>
+            </main>
 
         <footer class="text-center mt-12 text-sm text-[#B9C2C8]">
             <p>League-Wide Turnover Analysis | Data Source: All 2024-25 NBA Turnovers</p>
@@ -181,6 +238,8 @@
         const darkColor = '#002D72';
         const lightGray = '#E5E7EB';
         const darkGray = '#4B5563';
+        const positiveColor = '#E21E2C';
+        const negativeColor = '#00A1E4';
 
         const tooltipTitleCallback = (tooltipItems) => {
             const item = tooltipItems[0];
@@ -314,8 +373,6 @@
                 }
             }
         });
-
-        
 
         new Chart(document.getElementById('regionTypeChart'), {
             type: 'bar',
@@ -524,7 +581,71 @@
                 }
             }
         });
+        
+        // NEW CHART FOR REGRESSION RESULTS
+        const regressionData = [
+            { label: 'Blitzes', value: 0.046119279 },
+            { label: 'Dribbles', value: 0.014013899 },
+            { label: 'Passes', value: 0.012835696 },
+            { label: 'Shows', value: 0.011740188 },
+            { label: 'Handoffs', value: -0.014170891 },
+            { label: 'Zone', value: -0.016014847 },
+            { label: 'Isolations', value: -0.022965774 },
+        ].sort((a, b) => b.value - a.value);
 
+        const regressionLabels = regressionData.map(d => d.label);
+        const regressionValues = regressionData.map(d => d.value);
+        const barColors = regressionValues.map(val => val > 0 ? positiveColor : negativeColor);
+
+        new Chart(document.getElementById('regressionChart'), {
+            type: 'bar',
+            data: {
+                labels: regressionLabels,
+                datasets: [{
+                    label: 'Effect on Turnover Likelihood',
+                    data: regressionValues,
+                    backgroundColor: barColors,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Make it a horizontal bar chart
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                return `Effect: ${context.raw.toFixed(4)}`;
+                            }
+                        },
+                        backgroundColor: darkColor,
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    x: {
+                        min: -0.03,
+                        max: 0.05,
+                        ticks: { color: darkGray, font: { weight: '600' } },
+                        grid: { color: '#B9C2C8', drawBorder: false },
+                        border: { display: false }
+                    },
+                    y: {
+                        ticks: { color: darkGray, font: { weight: '600' } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
