@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Anatomy of a Turnover: A Visual Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #002D72;
+            background-image: url('https://images.unsplash.com/photo-1627916942738-98e3518a4a35?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: multiply;
+            color: #E5E7EB;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+        }
+        h1, h2, h3 {
+            color: #F2A900;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black mb-2">The Anatomy of a Turnover</h1>
+            <p class="text-lg md:text-xl text-[#B9C2C8]">A league-wide analysis of how possessions are lost in the NBA.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 text-center md:text-left pr-0 md:pr-8">
+                    <h2 class="text-3xl font-bold text-[#002D72] mb-4">The Primary Causes</h2>
+                    <p class="text-gray-600 mb-4">
+                        The vast majority of turnovers stem from just two fundamental types of errors: <b>bad passes</b> and <b>losing control of the ball</b>. Together, they form the overwhelming bulk of turnovers across the league, highlighting the importance of ball-handling and passing accuracy/decision-making.
+                    </p>
+                    <div class="bg-[#F2A900] text-[#002D72] p-6 rounded-lg shadow-md">
+                        <span class="kpi">77%</span>
+                        <p class="text-xl font-semibold">of all turnovers are either a bad pass or a lost ball. 47% are from passing, while 30% are losing the dribble.</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 mt-8 md:mt-0">
+                    <div class="chart-container h-[250px] md:h-[300px]">
+                        <canvas id="turnoverCompositionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Frequency by Play Type</h2>
+                <p class="text-gray-600 mb-6">
+                    Isolations are the best way to avoid turnovers. Every other play type has a similar turnover rate. This helps explain why, when excluding butter possessions, isolations were more efficient in 2024-25 than picks or hand-offs despite producing a worse shot quality.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="playChart"></canvas>
+                </div>
+            </div>
+
+             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Frequency by Pick-and-Roll Defensive Coverage</h2>
+                <p class="text-gray-600 mb-6">
+                    More aggressive defensive pick-and-roll coverages such as blitzes and shows force more turnovers, while switching forces the fewest.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="pickCoverageChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Frequency by Number of Weakside Defenders</h2>
+                <p class="text-gray-600 mb-6">
+                    The more defenders that are available on the weakside of the screen to help, the more likely the offense is to turn the ball over. Offenses are also most efficient overall in P&R with zero help on the weakside. 
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="weaksideChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Type Breakdown by Play Type</h2>
+                <p class="text-gray-600 mb-6">
+                    One-on-one plays (isos and post-ups) feature much fewer passing turnovers relative to other types.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="playBreakdownChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Hotspots on the Court</h2>
+                <p class="text-gray-600 mb-6">
+                    Two-thirds of turnovers occur inside the three-point line, either in the paint or the midrange area.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="regionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">The Flow of Turnovers</h2>
+                <p class="text-gray-600 mb-6">
+                    Turnovers occur relatively consistently throughout quarters, with a very slight trend upwards as the period progresses.
+                </p>
+                 <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="timingChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnovers by Period</h2>
+                <p class="text-gray-600 mb-6">
+                    Turnovers occur relatively evenly throughout the game. They are slightly most common in the 2nd quarter, and least common in the 4th.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="periodChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Type Breakdown by Region</h2>
+                <p class="text-gray-600 mb-6">
+                    The closer players get to the basket, the more likely their turnover will come from a dribbling mistake rather than a passing one. Outside of the paint, passing turnovers are TWICE as frequent as dribbling ones. But in the paint, lost ball turnovers happen more often.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="regionTypeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Rate by Position</h2>
+                <p class="text-gray-600 mb-6">
+                    Per touch, each position turns the ball over at roughly the same rate.
+                </p>
+                <div class="chart-container h-[350px] md:h-[400px]">
+                    <canvas id="positionChart"></canvas>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12 text-sm text-[#B9C2C8]">
+            <p>League-Wide Turnover Analysis | Data Source: All 2024-25 NBA Turnovers</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const primaryColor = '#00A1E4';
+        const secondaryColor = '#0053A0';
+        const accentColor = '#F2A900';
+        const darkColor = '#002D72';
+        const lightGray = '#E5E7EB';
+        const darkGray = '#4B5563';
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: darkColor,
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    cornerRadius: 4,
+                    displayColors: false
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: darkGray, font: { weight: '600' } },
+                    grid: { display: false },
+                    border: { color: lightGray }
+                },
+                y: {
+                    min: 0,
+                    ticks: { color: darkGray, font: { weight: '600' } },
+                    grid: { color: lightGray, drawBorder: false },
+                    border: { display: false }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('turnoverCompositionChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Bad Pass','Lost Ball' ,'Other Turnovers'],
+                datasets: [{
+                    data: [47, 30, 23],
+                    backgroundColor: [primaryColor, secondaryColor, '#F2A900'],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: darkGray,
+                            font: { size: 14, weight: '600' }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw.toFixed(2)}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('regionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Paint', 'Midrange', 'Three', 'Backcourt'],
+                datasets: [{
+                    label: '% of Turnovers',
+                    data: [31, 35, 20, 13],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    borderRadius: 4
+                }]
+            },
+            options: { ...defaultChartOptions, indexAxis: 'y' }
+        });
+
+        new Chart(document.getElementById('timingChart'), {
+            type: 'line',
+            data: {
+                labels: ['12-9 min', '9-6 min', '6-3 min', '3-0 min'],
+                datasets: [{
+                    label: 'Turnover Frequency',
+                    data: [24.1, 25.0, 25.3, 25.6],
+                    borderColor: primaryColor,
+                    backgroundColor: 'rgba(0, 161, 228, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: primaryColor,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: defaultChartOptions
+        });
+
+        new Chart(document.getElementById('periodChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Period 1', 'Period 2', 'Period 3', 'Period 4'],
+                datasets: [{
+                    label: '% of Turnovers',
+                    data: [24.7, 26.1, 25.4, 23.8],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        ...defaultChartOptions.scales.x,
+                        offset: true
+                    },
+                    y: {
+                        ...defaultChartOptions.scales.y
+                    }
+                }
+            }
+        });
+
+        
+
+        new Chart(document.getElementById('regionTypeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Paint', 'Midrange', 'Three', 'Backcourt'],
+                datasets: [{
+                    label: 'Bad Pass',
+                    data: [36, 46, 58, 58],
+                    backgroundColor: '#0053A0'
+                }, {
+                    label: 'Lost Ball',
+                    data: [38, 29, 21, 28],
+                    backgroundColor: '#002D72'
+                }, {
+                    label: 'Other',
+                    data: [26, 25, 21, 14],
+                    backgroundColor: '#F2A900'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: darkGray,
+                            font: { weight: '600' }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: darkColor,
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4,
+                        displayColors: true
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        ticks: { color: darkGray, font: { weight: '600' } },
+                        grid: { display: false }
+                    },
+                    y: {
+                        stacked: true,
+                        ticks: { color: darkGray, font: { weight: '600' } },
+                        grid: { color: lightGray, drawBorder: false },
+                        border: { display: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('playBreakdownChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Pick', 'Hand-off', 'Isolation', 'Post-Up'],
+                datasets: [{
+                    label: 'Bad Pass',
+                    data: [47.3, 47.5, 37.6, 35.9],
+                    backgroundColor: '#0053A0'
+                }, {
+                    label: 'Lost Ball',
+                    data: [28.2, 27.1, 37.8, 35.4],
+                    backgroundColor: '#002D72'
+                }, {
+                    label: 'Other',
+                    data: [24.4, 25.4, 24.6, 28.7],
+                    backgroundColor: '#F2A900'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: darkGray,
+                            font: { weight: '600' }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: darkColor,
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4,
+                        displayColors: true
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        ticks: { color: darkGray, font: { weight: '600' } },
+                        grid: { display: false }
+                    },
+                    y: {
+                        stacked: true,
+                        ticks: { color: darkGray, font: { weight: '600' } },
+                        grid: { color: lightGray, drawBorder: false },
+                        border: { display: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('playChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Pick', 'Hand-off', 'Isolation', 'Post-Up'],
+                datasets: [{
+                    label: 'Turnover %',
+                    data: [8.4, 8.2, 6.0, 8.3],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        ...defaultChartOptions.scales.x,
+                        offset: true
+                    },
+                    y: {
+                        ...defaultChartOptions.scales.y
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('positionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Guard' ,'Forward', 'Center'],
+                datasets: [{
+                    label: 'Turnover % Per Direct Touch',
+                    data: [8.0, 8.0, 8.3],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        ...defaultChartOptions.scales.x,
+                        offset: true
+                    },
+                    y: {
+                        ...defaultChartOptions.scales.y
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('pickCoverageChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Drop', 'Switch', 'Show', 'Blitz'],
+                datasets: [{
+                    label: 'Turnover %',
+                    data: [10.5, 8.5, 13.3, 17.4],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        ...defaultChartOptions.scales.x,
+                        offset: true
+                    },
+                    y: {
+                        ...defaultChartOptions.scales.y
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('weaksideChart'), {
+            type: 'bar',
+            data: {
+                labels: ['0 Weakside Defenders', '1 Defender', '2 Defenders', '3 Defenders'],
+                datasets: [{
+                    label: 'Turnover %',
+                    data: [9.8, 10.3, 11.0, 11.5],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        ...defaultChartOptions.scales.x,
+                        offset: true
+                    },
+                    y: {
+                        ...defaultChartOptions.scales.y
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
