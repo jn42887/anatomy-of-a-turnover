@@ -45,6 +45,22 @@
         h1, h2, h3 {
             color: #F2A900;
         }
+
+        .visual {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .visual img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .chart-caption {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 10px;
+        }
         .scale-container {
             display: flex;
             justify-content: center;
@@ -223,6 +239,44 @@
                     <canvas id="regressionChart"></canvas>
                 </div>
             </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-bold text-[#002D72] mb-4">NBA Offensive Turnover Rates vs Expected</h2>
+    <p class="text-gray-600 mb-6">
+        This chart visualizes how each team's offensive turnover rate compares to their expected rate.
+        Teams with a turnover rate <b>better than expected</b> (blue points) are more effective at protecting the ball,
+        while teams with a rate <b>worse than expected</b> (red points) are more prone to turnovers.
+        A team's "expected" rate is based on its play style and the factors listed above.
+    </p>
+    <p class="text-gray-600 mb-6">
+        The Cavs' play style in 2024-25 was expected to lead to an above average amount of turnovers (9th most expected), but our players were very good at taking care of the ball, leading to the third lowest actual turnover rate in the league.
+    </p>
+
+    <div class="flex flex-col items-center">
+        <img src="offense_turnovers.png" alt="2023-24 NBA Offensive Turnover Rates: Actual vs. Expected">
+        <p class="chart-caption">Teams above the dotted line have worse than expected turnover rates. Teams below are better.</p>
+    </div>
+
+</div>
+
+<div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-bold text-[#002D72] mb-4">NBA Defensive Turnover Rates vs Expected</h2>
+    <p class="text-gray-600 mb-6">
+        This chart shows how each team's defense performs in forcing turnovers relative to what's expected.
+        Teams with a forced turnover rate <b>better than expected</b> (red points) are highly disruptive,
+        creating more turnovers than their defensive style would predict.
+        Teams <b>worse than expected</b> (blue points) are less effective at generating turnovers.
+    </p>
+
+    <p class="text-gray-600 mb-6">
+        One downside of our more conservative and switch-heavy style of defense is a low expected forced turnover rate (3rd lowest expected). Our players did a relatively good job of forcing turnovers given the style of play, but we still ranked just 14th in forced turnover rate.
+    </p>
+
+    <div class="flex flex-col items-center">
+        <img src="defense_turnovers.png" alt="2023-24 NBA Defensive Forced Turnover Rates: Actual vs. Expected">
+        <p class="chart-caption">Teams above the dotted line have better than expected forced turnover rates. Teams below are worse.</p>
+    </div>
+</div>
             </main>
 
         <footer class="text-center mt-12 text-sm text-[#B9C2C8]">
