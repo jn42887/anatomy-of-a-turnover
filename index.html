@@ -12,7 +12,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #002D72;
+            background-color: #000000; /* Primary background is black */
             background-image: url('https://images.unsplash.com/photo-1627916942738-98e3518a4a35?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-position: center;
@@ -41,9 +41,10 @@
             font-weight: 900;
             font-size: 4rem;
             line-height: 1;
+            color: #FDB927; /* True Gold */
         }
         h1, h2, h3 {
-            color: #F2A900;
+            color: #860038; /* Wine */
         }
 
         .visual {
@@ -89,10 +90,10 @@
             transform: translateY(-5px);
         }
         .positive-risk {
-            background-color: #E21E2C;
+            background-color: #860038; /* Wine */
         }
         .negative-risk {
-            background-color: #0053A0;
+            background-color: #000000; /* Black */
         }
         .factor-name {
             font-size: 1.25rem;
@@ -104,10 +105,10 @@
             font-weight: 900;
         }
         .positive-text {
-            color: #E21E2C;
+            color: #860038; /* Wine */
         }
         .negative-text {
-            color: #0053A0;
+            color: #FDB927; /* True Gold */
         }
     </style>
 </head>
@@ -115,20 +116,20 @@
 
     <div class="container mx-auto p-4 md:p-8">
 
-        <header class="text-center mb-12">
+        <header class="text-center mb-12 flex flex-col items-center">
             <h1 class="text-4xl md:text-6xl font-black mb-2">The Anatomy of a Turnover</h1>
-            <p class="text-lg md:text-xl text-[#B9C2C8]">A league-wide analysis of how possessions are lost in the NBA.</p>
+            <p class="text-lg md:text-xl text-gray-300">A league-wide analysis of how possessions are lost in the NBA.</p>
         </header>
 
         <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 text-center md:text-left pr-0 md:pr-8">
-                    <h2 class="text-3xl font-bold text-[#002D72] mb-4">The Primary Causes</h2>
+                    <h2 class="text-3xl font-bold text-[#000000] mb-4">The Primary Causes</h2>
                     <p class="text-gray-600 mb-4">
                         The vast majority of turnovers stem from just two fundamental types of errors: <b>bad passes</b> and <b>losing control of the ball</b>. Together, they form the overwhelming bulk of turnovers across the league, highlighting the importance of ball-handling and passing accuracy/decision-making.
                     </p>
-                    <div class="bg-[#F2A900] text-[#002D72] p-6 rounded-lg shadow-md">
+                    <div class="bg-[#FDB927] text-[#000000] p-6 rounded-lg shadow-md">
                         <span class="kpi">77%</span>
                         <p class="text-xl font-semibold">of all turnovers are either a bad pass or a lost ball. 47% are from passing, while 30% are losing the dribble.</p>
                     </div>
@@ -141,7 +142,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Frequency by Play Type</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Frequency by Play Type</h2>
                 <p class="text-gray-600 mb-6">
                     Isolations are the best way to avoid turnovers. Every other play type has a similar turnover rate. This helps explain why, when excluding butter possessions, isolations were more efficient in 2024-25 than picks or hand-offs despite producing a worse shot quality.
                 </p>
@@ -151,7 +152,7 @@
             </div>
 
              <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Frequency by Pick-and-Roll Defensive Coverage</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Frequency by Pick-and-Roll Defensive Coverage</h2>
                 <p class="text-gray-600 mb-6">
                     More aggressive defensive pick-and-roll coverages such as blitzes and shows force more turnovers, while switching forces the fewest.
                 </p>
@@ -161,7 +162,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Frequency by Number of Weakside Defenders</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Frequency by Number of Weakside Defenders</h2>
                 <p class="text-gray-600 mb-6">
                     The more defenders that are available on the weakside of the screen to help, the more likely the offense is to turn the ball over. Offenses are also most efficient overall in P&R with zero help on the weakside. 
                 </p>
@@ -171,7 +172,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Type Breakdown by Play Type</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Type Breakdown by Play Type</h2>
                 <p class="text-gray-600 mb-6">
                     One-on-one plays (isos and post-ups) feature much fewer passing turnovers relative to other types.
                 </p>
@@ -181,7 +182,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Hotspots on the Court</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Hotspots on the Court</h2>
                 <p class="text-gray-600 mb-6">
                     Two-thirds of turnovers occur inside the three-point line, either in the paint or the midrange area.
                 </p>
@@ -191,7 +192,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">The Flow of Turnovers</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">The Flow of Turnovers</h2>
                 <p class="text-gray-600 mb-6">
                     Turnovers occur relatively consistently throughout quarters, with a very slight trend upwards as the period progresses.
                 </p>
@@ -201,7 +202,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnovers by Period</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnovers by Period</h2>
                 <p class="text-gray-600 mb-6">
                     Turnovers occur relatively evenly throughout the game. They are slightly most common in the 2nd quarter, and least common in the 4th.
                 </p>
@@ -211,7 +212,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Type Breakdown by Region</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Type Breakdown by Region</h2>
                 <p class="text-gray-600 mb-6">
                     The closer players get to the basket, the more likely their turnover will come from a dribbling mistake rather than a passing one. Outside of the paint, passing turnovers are TWICE as frequent as dribbling ones. But in the paint, lost ball turnovers happen more often.
                 </p>
@@ -221,7 +222,7 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Turnover Rate by Position</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Rate by Position</h2>
                 <p class="text-gray-600 mb-6">
                     Per touch, each position turns the ball over at roughly the same rate.
                 </p>
@@ -231,9 +232,9 @@
             </div>
 
             <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-[#002D72] mb-4">Creating a Turnover Probability Model</h2>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Creating a Turnover Probability Model</h2>
                 <p class="text-gray-600 mb-6">
-                    Using the trends discovered above, we can create a turnover probabiltiy model similar to how we use shot quality models. The visual below shows the most important factors in calculating turnover probability at the chance level, with the stats in red indicating an increased likelihood of a turnover, and the stats in blue indicating a decreased likelihood.
+                    Using the trends discovered above, we can create a turnover probabiltiy model similar to how we use shot quality models. The visual below shows the most important factors in calculating turnover probability at the chance level, with the stats in red indicating an increased likelihood of a turnover, and the stats in gold indicating a decreased likelihood.
                 </p>
                 <p class="text-gray-600 mb-6">
                     In testing expected vs actual turnover rates at the team level for both offense and defense, I found that offensive turnover rate seems to be highly dependent on a team's quality of players. The expected turnover rate based on playing style explains just 2% of a team's actual offensive turnover rate. In other words, 98% is explained by either the quality of the roster or other factors.
@@ -250,7 +251,7 @@
             </div>
 
     <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-bold text-[#002D72] mb-4">NBA Defensive Turnover Rates vs Expected</h2>
+    <h2 class="text-2xl font-bold text-[#000000] mb-4">NBA Defensive Turnover Rates vs Expected</h2>
     <p class="text-gray-600 mb-6">
         This chart shows how each team's defense performs in forcing turnovers relative to what's expected.
         Teams with a forced turnover rate <b>better than expected</b> (red points) are highly disruptive,
@@ -266,45 +267,40 @@
         <img src="defense_turnovers.png" alt="2023-24 NBA Defensive Forced Turnover Rates: Actual vs. Expected">
         <p class="chart-caption">Teams above the dotted line have better than expected forced turnover rates. Teams below are worse.</p>
     </div>
-</div>        
+</div>          
 
             <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-bold text-[#002D72] mb-4">NBA Offensive Turnover Rates vs Expected</h2>
-    <p class="text-gray-600 mb-6">
-        This chart visualizes how each team's offensive turnover rate compares to their expected rate.
-        Teams with a turnover rate <b>better than expected</b> (blue points) are more effective at protecting the ball,
-        while teams with a rate <b>worse than expected</b> (red points) are more prone to turnovers.
-        A team's "expected" rate is based on its play style and the factors listed above.
-    </p>
-    <p class="text-gray-600 mb-6">
-        The Cavs' play style in 2024-25 was expected to lead to an above average amount of turnovers (9th most expected), but our players were very good at taking care of the ball, leading to the third lowest actual turnover rate in the league.
-    </p>
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">NBA Offensive Turnover Rates vs Expected</h2>
+                <p class="text-gray-600 mb-6">
+                    This chart visualizes how each team's offensive turnover rate compares to their expected rate.
+                    Teams with a turnover rate <b>better than expected</b> (blue points) are more effective at protecting the ball,
+                    while teams with a rate <b>worse than expected</b> (red points) are more prone to turnovers.
+                    A team's "expected" rate is based on its play style and the factors listed above.
+                </p>
+                <p class="text-gray-600 mb-6">
+                    The Cavs' play style in 2024-25 was expected to lead to an above average amount of turnovers (9th most expected), but our players were very good at taking care of the ball, leading to the third lowest actual turnover rate in the league.
+                </p>
 
-    <div class="flex flex-col items-center">
-        <img src="offense_turnovers.png" alt="2023-24 NBA Offensive Turnover Rates: Actual vs. Expected">
-        <p class="chart-caption">Teams above the dotted line have worse than expected turnover rates. Teams below are better.</p>
-    </div>
+                <div class="flex flex-col items-center">
+                    <img src="offense_turnovers.png" alt="2023-24 NBA Offensive Turnover Rates: Actual vs. Expected">
+                    <p class="chart-caption">Teams above the dotted line have worse than expected turnover rates. Teams below are better.</p>
+                </div>
+            </div>
 
-</div>
+        </main>
 
-
-            </main>
-
-        <footer class="text-center mt-12 text-sm text-[#B9C2C8]">
+        <footer class="text-center mt-12 text-sm text-gray-400">
             <p>League-Wide Turnover Analysis | Data Source: All 2024-25 NBA Turnovers</p>
         </footer>
 
     </div>
 
     <script>
-        const primaryColor = '#00A1E4';
-        const secondaryColor = '#0053A0';
-        const accentColor = '#F2A900';
-        const darkColor = '#002D72';
+        const wine = '#860038';
+        const gold = '#FDB927';
+        const black = '#000000';
         const lightGray = '#E5E7EB';
         const darkGray = '#4B5563';
-        const positiveColor = '#E21E2C';
-        const negativeColor = '#00A1E4';
 
         const tooltipTitleCallback = (tooltipItems) => {
             const item = tooltipItems[0];
@@ -323,7 +319,7 @@
                     callbacks: {
                         title: tooltipTitleCallback
                     },
-                    backgroundColor: darkColor,
+                    backgroundColor: black,
                     titleFont: { size: 14, weight: 'bold' },
                     bodyFont: { size: 12 },
                     padding: 10,
@@ -349,10 +345,10 @@
         new Chart(document.getElementById('turnoverCompositionChart'), {
             type: 'doughnut',
             data: {
-                labels: ['Bad Pass','Lost Ball' ,'Other Turnovers'],
+                labels: ['Bad Pass', 'Lost Ball', 'Other Turnovers'],
                 datasets: [{
                     data: [47, 30, 23],
-                    backgroundColor: [primaryColor, secondaryColor, '#F2A900'],
+                    backgroundColor: [wine, black, gold],
                     borderColor: '#ffffff',
                     borderWidth: 4,
                     hoverOffset: 4
@@ -388,7 +384,7 @@
                 datasets: [{
                     label: '% of Turnovers',
                     data: [31, 35, 20, 13],
-                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    backgroundColor: [wine, black, gold, lightGray],
                     borderRadius: 4
                 }]
             },
@@ -402,11 +398,11 @@
                 datasets: [{
                     label: 'Turnover Frequency',
                     data: [24.1, 25.0, 25.3, 25.6],
-                    borderColor: primaryColor,
-                    backgroundColor: 'rgba(0, 161, 228, 0.1)',
+                    borderColor: wine,
+                    backgroundColor: '#8600384D', // 30% alpha wine
                     fill: true,
                     tension: 0.4,
-                    pointBackgroundColor: primaryColor,
+                    pointBackgroundColor: wine,
                     pointRadius: 4,
                     pointHoverRadius: 6
                 }]
@@ -421,7 +417,7 @@
                 datasets: [{
                     label: '% of Turnovers',
                     data: [24.7, 26.1, 25.4, 23.8],
-                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    backgroundColor: [wine, black, gold, lightGray],
                     borderRadius: 4
                 }]
             },
@@ -446,15 +442,15 @@
                 datasets: [{
                     label: 'Bad Pass',
                     data: [36, 46, 58, 58],
-                    backgroundColor: '#0053A0'
+                    backgroundColor: black
                 }, {
                     label: 'Lost Ball',
                     data: [38, 29, 21, 28],
-                    backgroundColor: '#002D72'
+                    backgroundColor: wine
                 }, {
                     label: 'Other',
                     data: [26, 25, 21, 14],
-                    backgroundColor: '#F2A900'
+                    backgroundColor: gold
                 }]
             },
             options: {
@@ -469,7 +465,7 @@
                         }
                     },
                     tooltip: {
-                        backgroundColor: darkColor,
+                        backgroundColor: black,
                         titleFont: { size: 14, weight: 'bold' },
                         bodyFont: { size: 12 },
                         padding: 10,
@@ -500,15 +496,15 @@
                 datasets: [{
                     label: 'Bad Pass',
                     data: [47.3, 47.5, 37.6, 35.9],
-                    backgroundColor: '#0053A0'
+                    backgroundColor: black
                 }, {
                     label: 'Lost Ball',
                     data: [28.2, 27.1, 37.8, 35.4],
-                    backgroundColor: '#002D72'
+                    backgroundColor: wine
                 }, {
                     label: 'Other',
                     data: [24.4, 25.4, 24.6, 28.7],
-                    backgroundColor: '#F2A900'
+                    backgroundColor: gold
                 }]
             },
             options: {
@@ -523,7 +519,7 @@
                         }
                     },
                     tooltip: {
-                        backgroundColor: darkColor,
+                        backgroundColor: black,
                         titleFont: { size: 14, weight: 'bold' },
                         bodyFont: { size: 12 },
                         padding: 10,
@@ -554,7 +550,7 @@
                 datasets: [{
                     label: 'Turnover %',
                     data: [8.4, 8.2, 6.0, 8.3],
-                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    backgroundColor: [wine, black, gold, lightGray],
                     borderRadius: 4
                 }]
             },
@@ -579,7 +575,7 @@
                 datasets: [{
                     label: 'Turnover % Per Direct Touch',
                     data: [8.0, 8.0, 8.3],
-                    backgroundColor: [primaryColor, secondaryColor, accentColor],
+                    backgroundColor: [wine, black, gold],
                     borderRadius: 4
                 }]
             },
@@ -604,7 +600,7 @@
                 datasets: [{
                     label: 'Turnover %',
                     data: [10.5, 8.5, 13.3, 17.4],
-                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    backgroundColor: [wine, black, gold, lightGray],
                     borderRadius: 4
                 }]
             },
@@ -629,7 +625,7 @@
                 datasets: [{
                     label: 'Turnover %',
                     data: [9.8, 10.3, 11.0, 11.5],
-                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#B9C2C8'],
+                    backgroundColor: [wine, black, gold, lightGray],
                     borderRadius: 4
                 }]
             },
@@ -660,7 +656,7 @@
 
         const regressionLabels = regressionData.map(d => d.label);
         const regressionValues = regressionData.map(d => d.value);
-        const barColors = regressionValues.map(val => val > 0 ? positiveColor : negativeColor);
+        const barColors = regressionValues.map(val => val > 0 ? wine : gold);
 
         new Chart(document.getElementById('regressionChart'), {
             type: 'bar',
@@ -688,7 +684,7 @@
                                 return `Effect: ${context.raw.toFixed(4)}`;
                             }
                         },
-                        backgroundColor: darkColor,
+                        backgroundColor: black,
                         titleFont: { size: 14, weight: 'bold' },
                         bodyFont: { size: 12 },
                         padding: 10,
@@ -701,7 +697,7 @@
                         min: -0.03,
                         max: 0.05,
                         ticks: { color: darkGray, font: { weight: '600' } },
-                        grid: { color: '#B9C2C8', drawBorder: false },
+                        grid: { color: lightGray, drawBorder: false },
                         border: { display: false }
                     },
                     y: {
