@@ -181,6 +181,18 @@
                 </div>
             </div>
 
+                                  <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-bold text-[#000000] mb-4">Fouls vs Forced Turnovers</h2>
+    <p class="text-gray-600 mb-6">
+        There is a strong, positive correlation between how often teams foul on defense and how many turnovers they force. However, in general, the math is in favor of a more aggressive style. Last season we did not foul often (8th lowest foul rate), and our forced turnover rate was around average (14th).
+    </p>
+
+
+    <div class="flex flex-col items-center">
+        <img src="Foul vs Turnovers.png" alt="2024-25 NBA Defensive Foul Rate vs Forced Turnovers">
+    </div>
+</div>  
+
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Hotspots on the Court</h2>
                 <p class="text-gray-600 mb-6">
@@ -231,40 +243,35 @@
                 </div>
             </div>
 
+
+
             <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Creating a Turnover Probability Model</h2>
                 <p class="text-gray-600 mb-6">
-                    Using the trends discovered above, we can create a turnover probabiltiy model similar to how we use shot quality models. The visual below shows the most important factors in calculating turnover probability at the chance level, with the stats in red indicating an increased likelihood of a turnover, and the stats in gold indicating a decreased likelihood.
+                    Using the trends discovered above, we can create a turnover probabiltiy model similar to how we use shot quality models. The visual below shows the most important factors in calculating turnover probability at the chance level, with the stats in red indicating an increased likelihood of a turnover, and the stats in gold indicating a decreased likelihood. This model is player-adjusted, meaning that it accounts for the turnover/steal rates of every player with a touch or defending a touch.
                 </p>
                 <p class="text-gray-600 mb-6">
-                    In testing expected vs actual turnover rates at the team level for both offense and defense, I found that offensive turnover rate seems to be highly dependent on a team's quality of players. The expected turnover rate based on playing style explains just 2% of a team's actual offensive turnover rate. In other words, 98% is explained by either the quality of the roster or other factors.
+                    In testing expected vs actual turnover rates at the team level for both offense and defense, I found that offensive turnover rate seems to be very hard to predict. The expected turnover rate model explains just 2% of a team's actual offensive turnover rate. 
                 </p>
                  <p class="text-gray-600 mb-6">
-                    HOWEVER, on the defensive end, expected forced turnover rates predict actual forced turnover rates much better. Stylistic factors explain 35% of forced turnovers, with the other 65% being a function of player quality and other factors. In other words, the way a team chooses to play defense very much affects how often they force turnovers.
-                </p>
-                <p class="text-gray-600 mb-6">
-                    There is still a lot of player-specific traits and randomness involved. For comparison, defensive shot quality explains 65% of eFG% allowed, nearly double the explanatory power of the expected turnover model (35%).
+                    HOWEVER, on the defensive end, expected forced turnover rates predict actual forced turnover rates much better. The model correctly predicts 70% of forced turnover rate.
                 </p>
                 <div class="chart-container h-[350px] md:h-[400px]">
                     <canvas id="regressionChart"></canvas>
                 </div>
             </div>
 
+ 
+
     <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
     <h2 class="text-2xl font-bold text-[#000000] mb-4">NBA Defensive Turnover Rates vs Expected</h2>
     <p class="text-gray-600 mb-6">
-        This chart shows how each team's defense performs in forcing turnovers relative to what's expected.
-        Teams with a forced turnover rate <b>better than expected</b> (red points) are highly disruptive,
-        creating more turnovers than their defensive style would predict.
-        Teams <b>worse than expected</b> (blue points) are less effective at generating turnovers.
-    </p>
-
-    <p class="text-gray-600 mb-6">
-        One downside of our more conservative and switch-heavy style of defense is a low expected forced turnover rate (3rd lowest expected). Our players did a relatively good job of forcing turnovers given the style of play, but we still ranked just 14th in forced turnover rate.
+        This chart shows how each team's defense performs in forcing turnovers relative to what's expected. One downside of our more conservative and switch-heavy style of defense is a low expected forced turnover rate (3rd lowest expected). Our players did a relatively good job of forcing turnovers given the style of play, but we still ranked just 14th in forced turnover rate.
+        
     </p>
 
     <div class="flex flex-col items-center">
-        <img src="defense_turnovers.png" alt="2023-24 NBA Defensive Forced Turnover Rates: Actual vs. Expected">
+        <img src="defense_turnovers.png" alt="2024-25 NBA Defensive Forced Turnover Rates: Actual vs. Expected">
         <p class="chart-caption">Teams above the dotted line have better than expected forced turnover rates. Teams below are worse.</p>
     </div>
 </div>          
@@ -273,16 +280,11 @@
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">NBA Offensive Turnover Rates vs Expected</h2>
                 <p class="text-gray-600 mb-6">
                     This chart visualizes how each team's offensive turnover rate compares to their expected rate.
-                    Teams with a turnover rate <b>better than expected</b> (blue points) are more effective at protecting the ball,
-                    while teams with a rate <b>worse than expected</b> (red points) are more prone to turnovers.
-                    A team's "expected" rate is based on its play style and the factors listed above.
-                </p>
-                <p class="text-gray-600 mb-6">
                     The Cavs' play style in 2024-25 was expected to lead to an above average amount of turnovers (9th most expected), but our players were very good at taking care of the ball, leading to the third lowest actual turnover rate in the league.
                 </p>
 
                 <div class="flex flex-col items-center">
-                    <img src="offense_turnovers.png" alt="2023-24 NBA Offensive Turnover Rates: Actual vs. Expected">
+                    <img src="offense_turnovers.png" alt="2024-25 NBA Offensive Turnover Rates: Actual vs. Expected">
                     <p class="chart-caption">Teams above the dotted line have worse than expected turnover rates. Teams below are better.</p>
                 </div>
             </div>
@@ -645,13 +647,18 @@
         
         // NEW CHART FOR REGRESSION RESULTS
         const regressionData = [
-            { label: 'Blitzes', value: 0.046119279 },
-            { label: 'Dribbles', value: 0.014013899 },
-            { label: 'Passes', value: 0.012835696 },
-            { label: 'Shows', value: 0.011740188 },
-            { label: 'Handoffs', value: -0.014170891 },
-            { label: 'Zone', value: -0.016014847 },
-            { label: 'Isolations', value: -0.022965774 },
+            { label: 'Blitzes', value: 0.054282198  },
+            { label: 'Dribbles', value: 0.022974821 },
+            { label: 'Passes', value: 0.020791753 },
+            { label: 'Individual Defender Steal Rates', value: 0.018515680},
+            { label: 'Shows', value: 0.012225752 },
+            { label: 'Individual Player Turnover Rates', value: 0.008499293}, 
+            { label: 'Fullcourt Ball Pressure', value: 0.002561055},
+            { label: 'Defense Foul Rate', value: 0.001535636},
+            { label: 'Zone', value: -0.013279903 },
+            { label: 'Drops', value: -0.014049179},
+            { label: 'Handoffs', value: -0.018162362 },
+            { label: 'Isolations', value: -0.021611968 },
         ].sort((a, b) => b.value - a.value);
 
         const regressionLabels = regressionData.map(d => d.label);
