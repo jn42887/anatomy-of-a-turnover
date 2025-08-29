@@ -8,16 +8,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000000; /* Primary background is black */
-            background-image: url('https://images.unsplash.com/photo-1627916942738-98e3518a4a35?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-color: #000000;
+            background-image: linear-gradient(to bottom, #000000, #1a1a1a);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-blend-mode: multiply;
             color: #E5E7EB;
         }
         .container {
@@ -44,9 +43,9 @@
             color: #860038; /* True Gold */
         }
         h1, h2, h3 {
+            font-family: 'Bebas Neue', sans-serif;
             color: #860038; /* Wine */
         }
-
         .visual {
             text-align: center;
             margin-bottom: 40px;
@@ -62,53 +61,18 @@
             color: #777;
             margin-top: 10px;
         }
-        .scale-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 2rem;
-            padding: 2rem;
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+            opacity: 0;
+            transform: translateY(20px);
         }
-        .scale-column {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            width: 50%;
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .factor-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            color: #fff;
-            transition: transform 0.3s ease;
-        }
-        .factor-block:hover {
+        .card:hover {
             transform: translateY(-5px);
-        }
-        .positive-risk {
-            background-color: #860038; /* Wine */
-        }
-        .negative-risk {
-            background-color: #000000; /* Black */
-        }
-        .factor-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-        .factor-effect {
-            font-size: 1.5rem;
-            font-weight: 900;
-        }
-        .positive-text {
-            color: #860038; /* Wine */
-        }
-        .negative-text {
-            color: #FDB927; /* True Gold */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -123,7 +87,7 @@
 
         <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center">
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center card">
                 <div class="w-full md:w-1/2 text-center md:text-left pr-0 md:pr-8">
                     <h2 class="text-3xl font-bold text-[#000000] mb-4">The Primary Causes</h2>
                     <p class="text-gray-600 mb-4">
@@ -141,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Frequency by Play Type</h2>
                 <p class="text-gray-600 mb-6">
                     Isolations are the best way to avoid turnovers. Every other play type has a similar turnover rate. This helps explain why, when excluding butter possessions, isolations were more efficient in 2024-25 than picks or hand-offs despite producing a worse shot quality.
@@ -151,7 +115,7 @@
                 </div>
             </div>
 
-             <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Frequency by Pick-and-Roll Defensive Coverage</h2>
                 <p class="text-gray-600 mb-6">
                     More aggressive defensive pick-and-roll coverages such as blitzes and shows force more turnovers, while switching forces the fewest.
@@ -161,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Frequency by Number of Weakside Defenders</h2>
                 <p class="text-gray-600 mb-6">
                     The more defenders that are available on the weakside of the screen to help, the more likely the offense is to turn the ball over. Offenses are also most efficient overall in P&R with zero help on the weakside. 
@@ -171,7 +135,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Type Breakdown by Play Type</h2>
                 <p class="text-gray-600 mb-6">
                     One-on-one plays (isos and post-ups) feature much fewer passing turnovers relative to other types.
@@ -181,19 +145,17 @@
                 </div>
             </div>
 
-                                  <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-bold text-[#000000] mb-4">Fouls vs Forced Turnovers</h2>
-    <p class="text-gray-600 mb-6">
-        There is a strong, positive correlation between how often teams foul on defense and how many turnovers they force. However, in general, the math is in favor of a more aggressive style. Last season we did not foul often (8th lowest foul rate), and our forced turnover rate was around average (14th).
-    </p>
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 card">
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">Fouls vs Forced Turnovers</h2>
+                <p class="text-gray-600 mb-6">
+                    There is a strong, positive correlation between how often teams foul on defense and how many turnovers they force. However, in general, the math is in favor of a more aggressive style. Last season we did not foul often (8th lowest foul rate), and our forced turnover rate was around average (14th).
+                </p>
+                <div class="flex flex-col items-center">
+                    <img src="Foul vs Turnovers.png" alt="2024-25 NBA Defensive Foul Rate vs Forced Turnovers">
+                </div>
+            </div>
 
-
-    <div class="flex flex-col items-center">
-        <img src="Foul vs Turnovers.png" alt="2024-25 NBA Defensive Foul Rate vs Forced Turnovers">
-    </div>
-</div>  
-
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Hotspots on the Court</h2>
                 <p class="text-gray-600 mb-6">
                     Two-thirds of turnovers occur inside the three-point line, either in the paint or the midrange area.
@@ -203,17 +165,17 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">The Flow of Turnovers</h2>
                 <p class="text-gray-600 mb-6">
                     Turnovers occur relatively consistently throughout quarters, with a very slight trend upwards as the period progresses.
                 </p>
-                 <div class="chart-container h-[350px] md:h-[400px]">
+                <div class="chart-container h-[350px] md:h-[400px]">
                     <canvas id="timingChart"></canvas>
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnovers by Period</h2>
                 <p class="text-gray-600 mb-6">
                     Turnovers occur relatively evenly throughout the game. They are slightly most common in the 2nd quarter, and least common in the 4th.
@@ -223,7 +185,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Type Breakdown by Region</h2>
                 <p class="text-gray-600 mb-6">
                     The closer players get to the basket, the more likely their turnover will come from a dribbling mistake rather than a passing one. Outside of the paint, passing turnovers are TWICE as frequent as dribbling ones. But in the paint, lost ball turnovers happen more often.
@@ -233,7 +195,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Turnover Rate by Position</h2>
                 <p class="text-gray-600 mb-6">
                     Per touch, each position turns the ball over at roughly the same rate.
@@ -243,51 +205,72 @@
                 </div>
             </div>
 
-
-
-            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">Creating a Turnover Probability Model</h2>
                 <p class="text-gray-600 mb-6">
                     Using the trends discovered above, we can create a turnover probabiltiy model similar to how we use shot quality models. The visual below shows the most important factors in calculating turnover probability at the chance level, with the stats in red indicating an increased likelihood of a turnover, and the stats in gold indicating a decreased likelihood. This model is player-adjusted, meaning that it accounts for the turnover/steal rates of every player with a touch or defending a touch.
                 </p>
                 <p class="text-gray-600 mb-6">
-                    In testing expected vs actual turnover rates at the team level for both offense and defense, I found that offensive turnover rate seems to be very hard to predict. The expected turnover rate model explains just 2% of a team's actual offensive turnover rate. 
+                    The analysis shows that the model is a very different tool depending on which side of the court you're evaluating. The model is very effective at capturing and quantifying a defense's identity. The expected turnover rate for a defense is a consistent and reliable metric over the course of a season, making the model an excellent tool for tracking our long-term defensive strategy and how we're doing at forcing turnovers.
+
+
                 </p>
-                 <p class="text-gray-600 mb-6">
-                    HOWEVER, on the defensive end, expected forced turnover rates predict actual forced turnover rates much better. The model correctly predicts 70% of forced turnover rate.
+                <p class="text-gray-600 mb-6">
+                    However, when it comes to our offense, the model's predictive power is much more limited. Because offensive turnovers are often a result of unpredictable, chaotic events, the model's game-by-game predictions don't correlate strongly with our actual turnover rate. This doesn't mean the model is broken, but that it's less useful for predicting randomness. Its value here is to confirm that we should trust our offensive process and not overreact to a single high-turnover game.
+                </p>
+                <p class="text-gray-600 mb-6">
+                    Interestingly, we were the most accurate among NBA teams in terms of the model being able to predict our offensive turnover rate. This means our players did a good job of controllling that offensive chaos relative to other teams. However, our turnover rate is overall mostly still unpredictable when compared to forcing TOV's on the other end of the court.
                 </p>
                 <div class="chart-container h-[350px] md:h-[400px]">
                     <canvas id="regressionChart"></canvas>
                 </div>
             </div>
 
- 
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 card">
+                <h2 class="text-2xl font-bold text-[#000000] mb-4">NBA Defensive Turnover Rates vs Expected</h2>
+                <p class="text-gray-600 mb-6">
+                    This chart shows how each team's defense performs in forcing turnovers relative to what's expected. One downside of our more conservative and switch-heavy style of defense is a low expected forced turnover rate (3rd lowest expected). Our players did a relatively good job of forcing turnovers given the style of play, but we still ranked just 14th in forced turnover rate.
+                </p>
+                <div class="flex flex-col items-center">
+                    <img src="defense_turnovers.png" alt="2024-25 NBA Defensive Forced Turnover Rates: Actual vs. Expected">
+                    <p class="chart-caption">Teams above the dotted line have better than expected forced turnover rates. Teams below are worse.</p>
+                </div>
+            </div>
 
-    <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-bold text-[#000000] mb-4">NBA Defensive Turnover Rates vs Expected</h2>
-    <p class="text-gray-600 mb-6">
-        This chart shows how each team's defense performs in forcing turnovers relative to what's expected. One downside of our more conservative and switch-heavy style of defense is a low expected forced turnover rate (3rd lowest expected). Our players did a relatively good job of forcing turnovers given the style of play, but we still ranked just 14th in forced turnover rate.
-        
-    </p>
-
-    <div class="flex flex-col items-center">
-        <img src="defense_turnovers.png" alt="2024-25 NBA Defensive Forced Turnover Rates: Actual vs. Expected">
-        <p class="chart-caption">Teams above the dotted line have better than expected forced turnover rates. Teams below are worse.</p>
-    </div>
-</div>          
-
-            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
+            <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 card">
                 <h2 class="text-2xl font-bold text-[#000000] mb-4">NBA Offensive Turnover Rates vs Expected</h2>
                 <p class="text-gray-600 mb-6">
                     This chart visualizes how each team's offensive turnover rate compares to their expected rate.
                     The Cavs' play style in 2024-25 was expected to lead to an above average amount of turnovers (9th most expected), but our players were very good at taking care of the ball, leading to the third lowest actual turnover rate in the league.
                 </p>
-
                 <div class="flex flex-col items-center">
                     <img src="offense_turnovers.png" alt="2024-25 NBA Offensive Turnover Rates: Actual vs. Expected">
                     <p class="chart-caption">Teams above the dotted line have worse than expected turnover rates. Teams below are better.</p>
                 </div>
             </div>
+
+<div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 card">
+    <h2 class="text-2xl font-bold text-[#000000] mb-4">Defensive Recommendations for Forcing More Turnovers</h2>
+    <p class="text-gray-600 mb-6">Based on the above analysis, here are the strategic changes we could make to force more turnovers.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-gray-50 rounded-lg shadow-md p-5 card flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-[#860038] mb-3">More Aggression + More Fouls</h3>
+            <p class="text-gray-700 text-sm">There is a strong, positive correlation between how often a defense fouls and how many turnovers it forces. This suggests that a more physical, aggressive style of play, even if it leads to a calculated increase in fouls, can disrupt offensive possessions and generate turnovers. While fouls are not a good thing, it can be a trade-off worth conceding in order to force more turnovers.</p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-lg shadow-md p-5 card flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-[#860038] mb-3">Lean into Weakside Help</h3>
+            <p class="text-gray-700 text-sm">The data strongly suggests that the more weakside defenders available, the higher the turnover rate. More deliberate helping off of non-shooters and prioritizing being in a position to double-team or intercept passes would lead to forcing more turnovers.</p>
+        </div>
+
+        <div class="bg-gray-50 rounded-lg shadow-md p-5 card flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-[#860038] mb-3">Mix in Occassional Aggressive P&R Coverages</h3>
+            <p class="text-gray-700 text-sm">While blitzes and shows are inefficient in large doses, the model shows they are highly effective at forcing turnovers. We could explore incorporating more on-ball pressure to disrupt the offense early in the possession, or if we want to temporarily change the rhythm of the game.</p>
+        </div>
+    </div>
+</div>
 
         </main>
 
@@ -298,6 +281,8 @@
     </div>
 
     <script>
+        // ... (existing Chart.js script) ...
+
         const wine = '#860038';
         const gold = '#FDB927';
         const black = '#000000';
@@ -647,7 +632,7 @@
         
         // NEW CHART FOR REGRESSION RESULTS
         const regressionData = [
-            { label: 'Blitzes', value: 0.054282198  },
+            { label: 'Blitzes', value: 0.054282198 },
             { label: 'Dribbles', value: 0.022974821 },
             { label: 'Passes', value: 0.020791753 },
             { label: 'Individual Defender Steal Rates', value: 0.018515680},
@@ -714,6 +699,29 @@
                 }
             }
         });
+
+        // JavaScript for fade-in on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once it's visible
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
     </script>
 </body>
 </html>
